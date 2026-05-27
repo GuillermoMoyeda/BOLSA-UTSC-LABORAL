@@ -1,0 +1,506 @@
+/* ========================================
+   MI EMPRESA - ESTÉTICA CORPORATIVA PREMIUM
+   ======================================== */
+
+.company-profile-container {
+    max-width: 1350px;
+    margin: 0 auto;
+    padding: 20px;
+    /* Reducido */
+}
+
+/* --- HERO SECTION --- */
+.company-hero {
+    background: var(--color-white);
+    border-radius: 12px;
+    /* Más sutil */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    /* Más suave */
+    position: relative;
+    /* Importante para el posicionamiento del logo */
+    margin-bottom: 50px;
+    /* Mas espacio abajo por el logo que sobresale */
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.hero-banner-wrapper {
+    height: 380px;
+    /* BANNER GIGANTE */
+    position: relative;
+    background: #f1f3f5;
+    overflow: hidden;
+    /* El overflow hidden se queda aquí para las esquinas del banner */
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.hero-banner-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.hero-banner-wrapper:hover .banner-overlay {
+    opacity: 1;
+}
+
+.btn-change-photo {
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+}
+
+.btn-change-photo:hover {
+    background: var(--color-primary);
+}
+
+.hero-logo-container {
+    position: absolute;
+    bottom: 20px;
+    /* Sube el logo para que esté sobre el banner */
+    left: 50px;
+    z-index: 10;
+}
+
+.company-logo-main {
+    width: 220px;
+    /* LOGO GIGANTE */
+    height: 220px;
+    background: white;
+    border-radius: 20px;
+    padding: 12px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    border: 5px solid white;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.company-logo-main img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    /* NUNCA SE DEFORMA */
+}
+
+.logo-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.company-logo-main:hover .logo-overlay {
+    opacity: 1;
+}
+
+.hero-info-bar {
+    padding: 20px 40px 20px 300px;
+    /* Más compacto verticalmente */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    min-height: 120px;
+    /* Asegura espacio para la info */
+}
+
+.hero-text h1 {
+    font-size: 2.6rem;
+    /* Título grande de nuevo */
+    font-weight: 900;
+    margin: 0;
+    color: var(--color-gray-900);
+    letter-spacing: -1px;
+}
+
+.hero-location {
+    font-size: 0.9rem;
+    color: var(--color-gray-500);
+    margin-top: 4px;
+}
+
+/* --- GRID & PANELS --- */
+.profile-main-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    /* Un poco más estrecha la social */
+    gap: 20px;
+    /* Menos espacio */
+}
+
+.content-panel {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    /* Reducido para ERP */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    margin-bottom: 20px;
+}
+
+.panel-title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-gray-700);
+    font-weight: 700;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.panel-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #f0f0f0;
+}
+
+.panel-body {
+    font-size: 0.95rem;
+    /* ERP Standard */
+    color: var(--color-gray-700);
+    line-height: 1.6;
+}
+
+.social-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.social-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 15px;
+    /* Compacto */
+    background: #fcfcfc;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--color-gray-700);
+    font-weight: 500;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+    border: 1px solid #f1f3f5;
+}
+
+.social-icon {
+    width: 32px;
+    /* Más chico */
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.9rem;
+}
+
+.social-icon.fb {
+    background: #1877F2;
+}
+
+.social-icon.ig {
+    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+}
+
+.social-icon.web {
+    background: #1a73e8;
+}
+
+.social-icon.mail {
+    background: #EA4335;
+}
+
+.social-icon.wa {
+    background: #25D366;
+}
+
+.social-icon.li {
+    background: #0A66C2;
+}
+
+.social-row:hover {
+    background: white;
+    border-color: var(--color-primary);
+    transform: translateX(8px);
+    box-shadow: 0 5px 15px rgba(255, 133, 7, 0.1);
+}
+
+.social-row.inactive {
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* --- MODAL XL CENTRADO --- */
+.modal-xl {
+    max-width: 1050px;
+    /* MODAL MUY GRANDE */
+    width: 95%;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-container {
+    background: white;
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header {
+    padding: 15px 25px;
+    /* Compacto */
+    border-bottom: 1px solid var(--color-gray-100);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    font-size: 1.1rem;
+}
+
+.modal-tabs {
+    display: flex;
+    padding: 0 25px;
+    border-bottom: 1px solid var(--color-gray-100);
+    gap: 20px;
+}
+
+.tab-btn {
+    padding: 12px 0;
+    /* Compacto */
+    background: none;
+    border: none;
+    color: var(--color-gray-500);
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s;
+}
+
+.tab-btn.active {
+    color: var(--color-primary);
+}
+
+.tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--color-primary);
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.modal-body {
+    padding: 20px 25px;
+    /* Compacto */
+    overflow-y: auto;
+    /* Habilitar scroll */
+    flex: 1;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--color-gray-700);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    color: var(--color-gray-800);
+    background: #f8fafc;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--color-primary);
+    background: #ffffff;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(255, 133, 7, 0.15);
+    /* Sombra naranja elegante */
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.modal-footer {
+    padding: 15px 25px;
+    border-top: 1px solid var(--color-gray-100);
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--color-gray-300);
+    border-radius: 10px;
+}
+
+/* Modal de Confirmación Custom (Más pro) */
+.confirm-dialog {
+    text-align: center;
+    padding: 20px;
+}
+
+.confirm-icon {
+    width: 70px;
+    height: 70px;
+    background: #fff8f0;
+    color: var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin: 0 auto 20px;
+}
+
+/* --- MEDIA QUERIES (RESPONSIVE) --- */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-full {
+    grid-column: span 2;
+}
+
+@media (max-width: 1000px) {
+    .profile-main-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-info-bar {
+        padding: 160px 30px 30px;
+        /* Mas padding por el logo gigante */
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-logo-container {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: unset;
+        top: 250px;
+        /* Posicionarlo en el borde del banner nuevo */
+    }
+
+    .hero-actions {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 900px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-full {
+        grid-column: span 1;
+    }
+}
+
+@media (max-width: 600px) {
+    .company-profile-container {
+        padding: 12px;
+    }
+
+    .hero-banner-wrapper {
+        height: 220px;
+    }
+
+    .company-logo-main {
+        width: 150px;
+        height: 150px;
+        border-radius: 16px;
+    }
+
+    .hero-logo-container {
+        top: 150px;
+    }
+
+    .hero-info-bar {
+        padding: 140px 16px 20px;
+        min-height: 0;
+    }
+
+    .hero-text h1 {
+        font-size: 1.8rem;
+    }
+
+    .content-panel {
+        padding: 18px;
+    }
+}

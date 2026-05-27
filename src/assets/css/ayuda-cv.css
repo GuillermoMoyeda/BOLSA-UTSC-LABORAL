@@ -1,0 +1,285 @@
+/* AYUDA CV - ULTRA WIDE Y ZENQUOTES EXPERIENCE */
+:root {
+    --primary-color: #ff8507;
+    --primary-hover: #e07400;
+    --secondary-color: #0f172a;
+    --bg-main: #f1f5f9;
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --card-hover: 0 20px 45px rgba(255, 133, 7, 0.2);
+}
+
+.cv-page-bg {
+    background-color: var(--bg-main);
+    font-family: 'Inter', sans-serif;
+    color: #334155;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* 100% TODO EL ANCHO DE LA PANTALLA */
+.cv-main-container {
+    width: 100vw;
+    margin: 0;
+    padding: 30px 4vw; 
+    min-height: calc(100vh - 80px);
+    box-sizing: border-box;
+}
+
+/* ══ QUOTE HERO (FULL WIDTH) ═══════════════════════════════ */
+.cv-hero {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border-radius: 24px;
+    padding: 60px 40px;
+    color: white;
+    margin-bottom: 70px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    cursor: pointer;
+    transition: transform 0.2s, background 0.5s;
+}
+
+.cv-hero:hover {
+    transform: scale(1.008);
+}
+
+.cv-hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 60%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,133,7,0.15) 0%, transparent 70%);
+    transform: rotate(30deg);
+    pointer-events: none;
+}
+
+.cv-hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.quote-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    opacity: 0.9;
+}
+
+.cv-quote-text {
+    font-size: 3rem;
+    font-weight: 900;
+    margin: 0 0 20px 0;
+    letter-spacing: -1.5px;
+    line-height: 1.25;
+    background: linear-gradient(90deg, #ffffff, #e2e8f0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: opacity 0.3s ease;
+    max-width: 90%;
+}
+
+.cv-quote-author {
+    font-size: 1.3rem;
+    color: #ff8507;
+    margin: 0;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: opacity 0.3s ease;
+    text-transform: uppercase;
+}
+
+.quote-progress {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 5px;
+    background: var(--primary-color);
+    width: 0%; /* animado por JS */
+}
+
+/* ══ SECTIONS ═════════════════════════════════════════════ */
+.cv-section {
+    margin-bottom: 80px;
+}
+
+.cv-section-header {
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.cv-section-header h2 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--secondary-color);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    letter-spacing: -0.5px;
+}
+
+.cv-section-header h2 i {
+    color: var(--primary-color);
+    font-size: 2.5rem;
+}
+
+.header-line {
+    width: 80px;
+    height: 6px;
+    background: var(--primary-color);
+    border-radius: 10px;
+}
+
+/* ══ VIDEOS GRID (RESPONSIVE AUTO-FILL, MAXIMIZED) ═════════ */
+.cv-video-grid {
+    display: grid;
+    /* Grid dinámico: miniatura más grande para aprovechar pantalla ancha */
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    gap: 30px;
+}
+
+.cv-video-card {
+    background: #000;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 3px solid transparent;
+}
+
+.cv-video-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: var(--card-hover);
+    border-color: var(--primary-color);
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    width: 100%;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* ══ TOOLS GRID (STRICTLY 3 COLUMNS CON MAS COLOR) ═════════ */
+.cv-tools-grid {
+    display: grid;
+    /* Forzar a 3 columnas exactas */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+@media (max-width: 1200px) {
+    .cv-tools-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 800px) {
+    .cv-tools-grid { grid-template-columns: 1fr; }
+}
+
+.cv-tool-card {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    background: white;
+    padding: 30px;
+    border-radius: 24px;
+    border: 1px solid #e2e8f0;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.cv-tool-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.1);
+    border-color: var(--primary-color);
+}
+
+.tool-icon {
+    width: 120px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.tool-icon img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Fondos transparentes para los logos en imagen para que luzcan enormes */
+.canva .tool-icon, .novoresume .tool-icon { 
+    background: transparent; 
+    border: none; 
+    box-shadow: none; 
+}
+
+/* Iconos para los que no son imágenes (LinkedIn) */
+.linkedin .tool-icon { 
+    background: transparent; 
+    box-shadow: none; 
+    border: none; 
+}
+.linkedin .tool-icon i { 
+    font-size: 5.5rem; 
+    color: #0A66C2; 
+    text-shadow: 0 5px 15px rgba(10, 102, 194, 0.2);
+}
+
+.tool-info h3 {
+    margin: 0 0 8px 0;
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.tool-info p {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+.tool-arrow {
+    margin-left: auto;
+    color: #cbd5e1;
+    font-size: 1.8rem;
+    transition: all 0.3s;
+}
+
+.cv-tool-card:hover .tool-arrow {
+    color: var(--primary-color);
+    transform: translateX(10px) scale(1.1);
+}
+
+/* Responsive Extreme */
+@media (max-width: 768px) {
+    .cv-main-container { padding: 20px 5vw; }
+    .cv-hero { padding: 40px 20px; }
+    .cv-quote-text { font-size: 2rem; max-width: 100%; }
+    .cv-video-grid { grid-template-columns: 1fr; }
+    .cv-tool-card { flex-direction: column; text-align: center; }
+    .tool-arrow { transform: rotate(90deg); margin: 15px auto 0 auto; }
+}

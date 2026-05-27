@@ -1,0 +1,183 @@
+.dash-bg { background-color: #f1f5f9; padding: 30px; }
+.dash-head { margin-bottom: 20px; }
+.dash-head h1 { font-size: 1.4rem; font-weight: 700; color: #1e293b; margin: 0; }
+
+.quick-links-grid {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.ql-card {
+    background: white;
+    border-radius: 10px;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    text-decoration: none;
+    color: #334155;
+    transition: all 0.2s;
+    border: 1px solid #e2e8f0;
+    flex: 1;
+    min-width: 200px;
+}
+.ql-card:hover {
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.1);
+    border-color: #3b82f6;
+    background: #f8fafc;
+}
+.ql-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+}
+.icon-green { background: #dcfce7; color: #16a34a; }
+.icon-blue { background: #dbeafe; color: #2563eb; }
+.icon-purple { background: #f3e8ff; color: #9333ea; }
+
+.ql-text { font-weight: 600; font-size: 0.95rem; }
+
+.dash-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 900px) {
+    .dash-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+    .quick-links-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .ql-card {
+        flex: unset;
+        min-width: 0;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 10px 8px;
+        border-radius: 12px;
+    }
+
+    .ql-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        font-size: 0.95rem;
+    }
+
+    .ql-text {
+        font-size: 0.72rem;
+    }
+}
+
+.dash-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    border: 1px solid #e2e8f0;
+}
+.dash-card h3 {
+    margin: 0 0 15px 0;
+    font-size: 1.05rem;
+    color: #0f172a;
+    font-weight: 700;
+}
+
+/* Table Compacta */
+.dash-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.dash-table th {
+    text-align: left;
+    padding: 10px 12px;
+    color: #64748b;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #f1f5f9;
+    font-weight: 700;
+}
+.dash-table td {
+    padding: 12px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #334155;
+    font-size: 0.85rem;
+    vertical-align: middle;
+}
+.dash-table tbody tr:hover { background: #f8fafc; }
+
+.badge-status {
+    padding: 4px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2px;
+}
+.badge-status.activa { background: #dcfce7; color: #16a34a; }
+.badge-status.inactiva { background: #f1f5f9; color: #64748b; }
+.badge-status.vencida { background: #fee2e2; color: #ef4444; }
+
+.badge-numero {
+    background: #f1f5f9; color: #475569; padding: 3px 8px; border-radius: 6px; font-weight: 600; font-size: 0.8rem;
+}
+
+/* Company Mini Card */
+.company-mini-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    border: 1px solid #e2e8f0;
+    text-align: center;
+}
+.cmc-banner {
+    height: 90px;
+    background-color: #f1f5f9;
+    background-size: cover;
+    background-position: center;
+}
+.cmc-logo {
+    width: 70px;
+    height: 70px;
+    background: white;
+    border-radius: 50%;
+    margin: -35px auto 10px auto;
+    padding: 3px;
+    border: 3px solid white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.cmc-logo img {
+    width: 100%; height: 100%; object-fit: contain; border-radius: 50%;
+}
+.cmc-name {
+    margin: 0; font-size: 1.15rem; font-weight: 700; color: #0f172a; padding: 0 15px;
+}
+.cmc-location {
+    color: #64748b; font-size: 0.85rem; margin: 5px 0 15px 0; padding: 0 15px;
+}
+.cmc-socials {
+    padding: 0 15px 20px 15px;
+    display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;
+}
+.cmc-social-btn {
+    width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; transition: transform 0.2s; font-size: 0.95rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.cmc-social-btn:hover { transform: scale(1.1); color: white; }
+.bg-fb { background: #1877F2; }
+.bg-ig { background: #E4405F; }
+.bg-wb { background: #1a73e8; }
+.bg-gm { background: #EA4335; }
+.bg-wa { background: #25D366; }
+.bg-in { background: #0A66C2; }

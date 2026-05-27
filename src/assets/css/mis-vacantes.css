@@ -1,0 +1,917 @@
+/* =====================================================
+   MIS VACANTES - ERP STYLE (alineado a admin)
+   UTSC Laboral
+   ===================================================== */
+
+/* ---- Breadcrumb ---- */
+.mv-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #909399;
+}
+
+.mv-bc-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: opacity 0.15s;
+}
+
+.mv-bc-link:hover {
+    opacity: 0.7;
+}
+
+.mv-bc-sep {
+    font-size: 0.6rem;
+    color: #c0c4cc;
+}
+
+.mv-bc-active {
+    color: #303133;
+    font-weight: 700;
+}
+
+/* ---- Top Bar (igual a admin-top-bar) ---- */
+.mv-top-bar {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    background: #ffffff;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    border: 1px solid #dcdfe6;
+    overflow: hidden;
+    flex-wrap: wrap;
+}
+
+/* ---- KPI mini (idéntico al de admin) ---- */
+.mv-kpi-mini {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px 12px 16px;
+    border-right: 1px solid #dcdfe6;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.mv-kpi-mini.no-border {
+    border-right: 1px solid #dcdfe6;
+}
+
+.mv-kpi-icon {
+    width: 34px;
+    height: 34px;
+    background: rgba(255, 133, 7, 0.1);
+    color: var(--color-primary);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.mv-kpi-icon.green {
+    background: rgba(103, 194, 58, 0.1);
+    color: #67c23a;
+}
+
+.mv-kpi-icon.blue {
+    background: rgba(64, 158, 255, 0.1);
+    color: #409eff;
+}
+
+.mv-kpi-icon.purple {
+    background: rgba(124, 58, 237, 0.1);
+    color: #7c3aed;
+}
+
+.mv-kpi-data h3 {
+    font-size: 0.6rem;
+    color: #909399;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 1px 0;
+    font-weight: 600;
+}
+
+.mv-kpi-val {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #303133;
+    line-height: 1.1;
+}
+
+/* ---- Buscador en la top bar ---- */
+.mv-search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 180px;
+    padding: 8px 14px;
+    border-right: 1px solid #dcdfe6;
+}
+
+.mv-search-icon {
+    position: absolute;
+    left: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #c0c4cc;
+    font-size: 0.8rem;
+    pointer-events: none;
+}
+
+.mv-search-input {
+    width: 100%;
+    padding: 7px 10px 7px 28px;
+    border: 1px solid #dcdfe6;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-family: 'Inter', sans-serif;
+    color: #606266;
+    background: #fff;
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+.mv-search-input:focus {
+    border-color: var(--color-primary);
+}
+
+/* ---- Selects filtro ---- */
+.mv-select {
+    border: none;
+    border-right: 1px solid #dcdfe6;
+    padding: 0 14px;
+    height: 100%;
+    min-height: 52px;
+    font-size: 0.82rem;
+    font-family: 'Inter', sans-serif;
+    color: #606266;
+    background: transparent;
+    outline: none;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.mv-select:focus {
+    color: var(--color-primary);
+}
+
+/* ---- Botón acción ---- */
+.mv-actions-group {
+    padding: 10px 16px;
+    flex-shrink: 0;
+}
+
+.mv-btn-primary {
+    padding: 8px 16px;
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    transition: background 0.2s;
+    white-space: nowrap;
+}
+
+.mv-btn-primary:hover {
+    background: #e67300;
+    color: white;
+}
+
+/* ---- Barra de resultados ---- */
+.mv-results-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.mv-count-label {
+    font-size: 0.8rem;
+    color: #909399;
+    font-weight: 600;
+}
+
+/* ===================================================
+   GRID DE TARJETAS
+   =================================================== */
+.mv-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+/* ---- Skeleton ---- */
+.mv-skeleton {
+    background: #fff;
+    border: 1px solid #ebeef5;
+    border-radius: 4px;
+    height: 240px;
+    position: relative;
+    overflow: hidden;
+}
+
+.mv-skeleton::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(245, 247, 250, 0.9), transparent);
+    animation: mv-shimmer 1.4s infinite;
+}
+
+@keyframes mv-shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* ---- Tarjeta ---- */
+.mv-card {
+    background: #ffffff;
+    border: 1px solid #ebeef5;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    overflow: hidden;
+    position: relative;
+}
+
+.mv-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    border-color: rgba(255, 133, 7, 0.35);
+    transform: translateY(-2px);
+}
+
+/* Tarjeta VENCIDA */
+.mv-card.vencida {
+    border-color: #fde2e2;
+    background: #fffafa;
+}
+
+.mv-card.vencida .mv-card-stripe {
+    background: #f56c6c;
+}
+
+.mv-card.vencida:hover {
+    border-color: #f56c6c;
+}
+
+/* Tarjeta INACTIVA */
+.mv-card.inactiva {
+    border-color: #e8eaec;
+    background: #f9fafb;
+    opacity: 0.8;
+}
+
+.mv-card.inactiva .mv-card-stripe {
+    background: #909399;
+}
+
+/* Badge de estado (Ahora será relativo/flex dentro de la tarjeta para no amontonarse) */
+.mvc-estado {
+    position: static;
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.6rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    padding: 3px 8px;
+    border-radius: 4px;
+}
+
+.mvc-estado.activa {
+    background: #f0f9eb;
+    color: #67c23a;
+    border: 1px solid #e1f3d8;
+}
+
+.mvc-estado.inactiva {
+    background: #f5f7fa;
+    color: #909399;
+    border: 1px solid #dcdfe6;
+}
+
+.mvc-estado.vencida {
+    background: #fef0f0;
+    color: #f56c6c;
+    border: 1px solid #fde2e2;
+}
+
+/* Franja superior naranja */
+.mv-card-stripe {
+    height: 3px;
+    background: var(--color-primary);
+}
+
+.mv-card-body {
+    padding: 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Header de la tarjeta */
+.mvc-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.mvc-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.mvc-badge.practicante {
+    background: #e0f2fe;
+    color: #0369a1;
+}
+
+.mvc-badge.egresado {
+    background: #f3e8ff;
+    color: #6d28d9;
+}
+
+.mvc-puesto {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #303133;
+    margin: 0 0 10px 0;
+    line-height: 1.25;
+}
+
+/* Info rápida */
+.mvc-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.mvc-row {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.8rem;
+    color: #606266;
+}
+
+.mvc-row i {
+    width: 14px;
+    text-align: center;
+    color: #c0c4cc;
+    flex-shrink: 0;
+    font-size: 0.75rem;
+}
+
+.mvc-row.danger {
+    color: #f56c6c;
+    font-weight: 700;
+}
+
+.mvc-row.danger i {
+    color: #f56c6c;
+}
+
+/* Mini KPIs en la tarjeta */
+.mvc-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    padding-top: 10px;
+    border-top: 1px solid #ebeef5;
+    margin-top: auto;
+}
+
+.mvc-stat {
+    background: #f5f7fa;
+    border: 1px solid #ebeef5;
+    border-radius: 3px;
+    padding: 8px 10px;
+    text-align: center;
+}
+
+.mvc-stat .sv {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #303133;
+    display: block;
+    line-height: 1;
+    margin-bottom: 2px;
+}
+
+.mvc-stat .sl {
+    font-size: 0.63rem;
+    font-weight: 600;
+    color: #909399;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+/* Footer de la tarjeta: 3 botones */
+.mv-card-footer {
+    padding: 8px 12px;
+    border-top: 1px solid #ebeef5;
+    background: #fafafa;
+    display: flex;
+    gap: 5px;
+}
+
+.mv-btn-action {
+    flex: 1;
+    padding: 8px 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border: 1px solid #dcdfe6;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.15s;
+    background: #fff;
+    color: #606266;
+    font-family: 'Inter', sans-serif;
+    white-space: nowrap;
+}
+
+/* El botón de Ver Más sólo tendrá ícono para ahorrar espacio si hay muchos botones */
+.mv-btn-action.ver-mas {
+    flex: 0 0 auto;
+    width: 38px;
+    color: #409eff;
+    border-color: #d9ecff;
+    background: #ecf5ff;
+}
+
+.mv-btn-action.desactivar {
+    color: #f56c6c;
+    border-color: #fde2e2;
+    background: #fef0f0;
+}
+
+.mv-btn-action.desactivar:hover {
+    background: #f56c6c;
+    color: white;
+    border-color: #f56c6c;
+}
+
+.mv-btn-action.activar {
+    color: #67c23a;
+    border-color: #e1f3d8;
+    background: #f0f9eb;
+}
+
+.mv-btn-action.activar:hover {
+    background: #67c23a;
+    color: white;
+    border-color: #67c23a;
+}
+
+.mv-btn-action.ver-mas {
+    color: #409eff;
+    border-color: #d9ecff;
+    background: #ecf5ff;
+}
+
+.mv-btn-action.ver-mas:hover {
+    background: #409eff;
+    color: white;
+    border-color: #409eff;
+}
+
+.mv-btn-action.postulaciones:hover {
+    background: #303133;
+    color: #fff;
+    border-color: #303133;
+}
+
+/* ===================================================
+   ESTADO VACÍO
+   =================================================== */
+.mv-empty {
+    background: #ffffff;
+    border: 1px solid #ebeef5;
+    border-radius: 4px;
+    text-align: center;
+    padding: 60px 40px;
+}
+
+.mv-empty-icon {
+    font-size: 3rem;
+    color: #c0c4cc;
+    margin-bottom: 16px;
+}
+
+.mv-empty h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #303133;
+    margin: 0 0 8px;
+}
+
+.mv-empty p {
+    font-size: 0.88rem;
+    color: #909399;
+    margin: 0 auto 20px;
+    max-width: 340px;
+}
+
+/* ===================================================
+   TOAST
+   =================================================== */
+#mv-toast-container {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.mv-toast {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 18px;
+    border-radius: 4px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    color: white;
+    font-weight: 600;
+    font-size: 0.85rem;
+    animation: mvToastIn 0.25s ease;
+    font-family: 'Inter', sans-serif;
+}
+
+@keyframes mvToastIn {
+    from {
+        transform: translateX(60px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.mv-toast.success {
+    background: #67c23a;
+}
+
+.mv-toast.error {
+    background: #f56c6c;
+}
+
+.mv-toast.info {
+    background: #409eff;
+}
+
+@media (max-width: 1400px) {
+    .mv-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 1100px) {
+    .mv-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .mv-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .mv-top-bar {
+        flex-direction: column;
+    }
+
+    .mv-kpi-mini,
+    .mv-search-wrap,
+    .mv-select {
+        border-right: none;
+        border-bottom: 1px solid #dcdfe6;
+        width: 100%;
+    }
+
+    .mv-search-wrap {
+        padding: 8px 12px;
+    }
+
+    .mv-actions-group {
+        width: 100%;
+        padding: 10px 12px;
+    }
+
+    .mv-btn-primary {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .mv-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ========================================
+   DISEÑO MODAL DETALLE (PREMIUM) 
+   ======================================== */
+.mv-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 9000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.3s ease;
+}
+
+.mv-modal-content {
+    background: white;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 900px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    animation: slideUp 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.mv-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 100;
+    transition: all 0.2s;
+}
+
+.mv-modal-close:hover {
+    background: #f56c6c;
+    transform: rotate(90deg);
+}
+
+/* Replicando estilos de vacantes.css para el detalle */
+.vacancy-detail-pro {
+    background: white;
+    position: relative;
+}
+
+.company-logo-overlay {
+    position: absolute;
+    top: 240px;
+    /* Ajustado para el modal */
+    right: 50px;
+    width: 110px;
+    height: 110px;
+    background: white;
+    border-radius: 20px;
+    padding: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    border: 1px solid #f1f5f9;
+}
+
+.vacancy-hero {
+    height: 300px;
+    background: #1e293b;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 40px 50px;
+    overflow: hidden;
+}
+
+.hero-overlay-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.35;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    width: 100%;
+}
+
+.hero-tag {
+    background: var(--color-primary);
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: inline-block;
+}
+
+.hero-content h1 {
+    font-size: 2.2rem;
+    margin: 0 0 6px;
+    font-weight: 800;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    line-height: 1.1;
+}
+
+.hero-company {
+    font-size: 1rem;
+    opacity: 0.9;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.vacancy-main-grid {
+    display: grid;
+    grid-template-columns: 2fr 1.2fr;
+    padding: 40px 50px;
+    gap: 40px;
+}
+
+.detail-section {
+    margin-bottom: 30px;
+}
+
+.detail-section h4 {
+    font-size: 0.75rem;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.detail-section h4::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #f1f5f9;
+}
+
+.detail-p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #475569;
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+.data-card {
+    background: #f8fafc;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid #f1f5f9;
+    margin-bottom: 12px;
+}
+
+.data-card label {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: #94a3b8;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+}
+
+.data-card span {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.data-card.sueldo {
+    background: #f0fdf4;
+    border-color: #dcfce7;
+}
+
+.data-card.sueldo span {
+    color: #166534;
+}
+
+.data-card.deadline {
+    background: #fff7ed;
+    border-color: #ffedd5;
+}
+
+.data-card.deadline span {
+    color: #9a3412;
+}
+
+.career-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.career-chips .chip {
+    background: white;
+    border: 1px solid #e2e8f0;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #64748b;
+}
+
+@media (max-width: 850px) {
+    .vacancy-main-grid {
+        grid-template-columns: 1fr;
+        padding: 25px;
+        gap: 20px;
+    }
+
+    .company-logo-overlay {
+        top: 250px;
+        right: 25px;
+        width: 80px;
+        height: 80px;
+    }
+
+    .hero-content h1 {
+        font-size: 1.6rem;
+    }
+}

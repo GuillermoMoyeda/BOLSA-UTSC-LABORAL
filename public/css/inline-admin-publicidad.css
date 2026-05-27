@@ -1,0 +1,244 @@
+.admin-header {
+            background: linear-gradient(135deg, var(--color-white) 0%, var(--color-gray-50) 100%);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--color-gray-200);
+        }
+
+        .admin-title {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: var(--color-gray-900);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .admin-subtitle {
+            font-size: 1.1rem;
+            color: var(--color-gray-600);
+        }
+
+        .slots-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            /* Espacio reducido entre tarjetas */
+            width: 94%;
+            /* Para alinear con la galería principal que tiene 94% */
+            margin: 20px auto 40px auto;
+            /* Solo 20px de separación con el diseño principal de arriba */
+            padding: 0;
+        }
+
+        .slot-card {
+            background: var(--color-white);
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 1px dashed var(--color-gray-400);
+            aspect-ratio: 16 / 9;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-base);
+        }
+
+        .slot-card:hover {
+            border-color: var(--color-primary);
+        }
+
+        .slot-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .slot-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-md);
+            opacity: 0;
+            transition: opacity var(--transition-base);
+            z-index: 10;
+        }
+
+        .slot-card:hover .slot-overlay {
+            opacity: 1;
+        }
+
+        .slot-empty-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--color-gray-500);
+        }
+
+        .slot-empty-content i {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--color-gray-400);
+            transition: color var(--transition-base);
+        }
+
+        .slot-card:hover .slot-empty-content i {
+            color: var(--color-primary);
+        }
+
+        .btn-slot-action {
+            background: var(--color-white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--radius-full);
+            color: var(--color-gray-800);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-slot-action:hover {
+            background: var(--color-primary);
+            color: var(--color-white);
+            transform: scale(1.05);
+        }
+
+        .btn-slot-delete:hover {
+            background: var(--color-error, #ef4444);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-container {
+            background: var(--color-white);
+            padding: var(--spacing-2xl);
+            border-radius: var(--radius-xl);
+            width: 90%;
+            max-width: 500px;
+            box-shadow: var(--shadow-xl);
+            position: relative;
+        }
+
+        .modal-container h2 {
+            margin-top: 0;
+            margin-bottom: var(--spacing-lg);
+            color: var(--color-gray-900);
+        }
+
+        .file-input-wrapper {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--color-gray-300);
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(255, 133, 7, 0.1);
+        }
+
+        .btn-cancel {
+            background: var(--color-gray-200);
+            color: var(--color-gray-800);
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn-cancel:hover {
+            background: var(--color-gray-300);
+        }
+
+        .btn-primary {
+            background: var(--color-primary);
+            color: var(--color-white);
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--radius-lg);
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .btn-primary:hover {
+            background: #ff9c2f;
+            transform: translateY(-2px);
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-xl);
+        }
+
+        @media (max-width: 768px) {
+            #gallery {
+                margin-top: 8px;
+            }
+
+            .gallery-container {
+                width: 100%;
+                border-radius: 16px;
+            }
+
+            .slots-container {
+                grid-template-columns: 1fr;
+                width: 100%;
+                margin: 16px auto 28px auto;
+                gap: 14px;
+                padding: 0 8px;
+            }
+
+            .slot-card {
+                border-radius: 18px;
+                box-shadow: 0 8px 20px rgba(15, 23, 42, 0.12);
+            }
+
+            .slot-overlay {
+                opacity: 1;
+                background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.55) 100%);
+            }
+
+            .btn-slot-action {
+                width: 90%;
+                justify-content: center;
+                font-size: 0.95rem;
+            }
+        }

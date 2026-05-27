@@ -1,0 +1,1625 @@
+/* ========================================
+   DISEÑO ERP - ALTA DE VACANTES (FULL WIDTH & PRO)
+   ======================================== */
+
+:root {
+    --color-primary: #ff8507;
+    --color-primary-dark: #e67600;
+    --color-gray-50: #f9fafb;
+    --color-gray-100: #f3f4f6;
+    --color-gray-200: #e5e7eb;
+    --color-gray-300: #d1d5db;
+    --color-gray-500: #6b7280;
+    --color-gray-700: #374151;
+    --color-gray-800: #1f2937;
+    --color-gray-900: #111827;
+}
+
+.vacantes-container {
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    position: relative;
+    /* Necesario para el inner view */
+}
+
+/* ERP TOP SECTION (KPIs & TITLE) */
+.erp-top-container {
+    padding: 10px 10px 5px 10px;
+    /* Reducido */
+}
+
+.erp-header-main-card {
+    background: white;
+    border-radius: 10px;
+    padding: 15px 25px;
+    /* Reducido */
+    border: 1px solid var(--color-gray-200);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    gap: 20px;
+}
+
+.header-left-info {
+    flex: 1;
+}
+
+.header-left-info h1 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--color-gray-900);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+}
+
+.header-left-info p {
+    font-size: 0.85rem;
+    color: var(--color-gray-500);
+    margin: 4px 0 0;
+}
+
+.header-toolbar {
+    display: flex;
+    gap: 10px;
+}
+
+.header-kpi {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-left: 30px;
+    border-left: 2px solid var(--color-gray-100);
+}
+
+.kpi-icon-sm {
+    width: 44px;
+    height: 44px;
+    background: #fff7ed;
+    color: var(--color-primary);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+
+.kpi-info-sm {
+    display: flex;
+    flex-direction: column;
+}
+
+.kpi-value-sm {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--color-gray-900);
+    line-height: 1;
+}
+
+.kpi-label-sm {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--color-gray-500);
+    text-transform: uppercase;
+}
+
+/* TOOLBAR */
+.erp-toolbar-compact {
+    display: flex;
+    gap: 10px;
+    padding: 0 20px 20px;
+}
+
+.btn-toolbar-sm {
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border: 1px solid var(--color-gray-200);
+    background: white;
+    color: var(--color-gray-700);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+
+.btn-toolbar-sm:hover {
+    background: var(--color-gray-50);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+.btn-toolbar-sm.primary {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+}
+
+/* ERP FORM AREA */
+.erp-form-wrapper {
+    padding: 5px 10px 20px 10px;
+    /* Reducido */
+}
+
+.grid-side-textarea {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    /* Reducido */
+}
+
+.tall-textarea {
+    min-height: 140px;
+    /* Un poco más compacto pero alto */
+    resize: none;
+}
+
+.erp-card-full {
+    background: white;
+    border: 1px solid var(--color-gray-200);
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+}
+
+.erp-form-padding {
+    padding: 20px 30px;
+    /* Reducido de 30px 40px */
+}
+
+.form-section-pro {
+    margin-bottom: 25px;
+    /* Reducido de 35px */
+}
+
+.section-label {
+    font-size: 0.7rem;
+    /* Un poco más pequeño */
+    font-weight: 800;
+    color: var(--color-gray-500);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 15px;
+    /* Reducido */
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--color-gray-100);
+}
+
+/* SELECTION BUTTONS (PICKER) */
+.option-picker {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.picker-item {
+    border: 2px solid var(--color-gray-100);
+    border-radius: 10px;
+    padding: 10px 15px;
+    /* Reducido */
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #fdfdfd;
+}
+
+.picker-item:hover {
+    border-color: var(--color-primary-dark);
+    background: #fffaf5;
+}
+
+.picker-item.active {
+    border-color: var(--color-primary);
+    background: #fff8f0;
+    box-shadow: 0 4px 12px rgba(255, 133, 7, 0.1);
+}
+
+.picker-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: var(--color-gray-500);
+    border: 1px solid var(--color-gray-100);
+}
+
+.picker-item.active .picker-icon {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+}
+
+.picker-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.picker-title {
+    font-weight: 800;
+    font-size: 0.9rem;
+    color: var(--color-gray-800);
+}
+
+.picker-desc {
+    font-size: 0.75rem;
+    color: var(--color-gray-500);
+}
+
+/* FORM GRID CUSTOM */
+.grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    /* 3 COLUMNS */
+    gap: 20px;
+}
+
+.form-group-pro {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group-pro label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--color-gray-700);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-group-pro label i {
+    color: var(--color-primary);
+    font-size: 0.8rem;
+}
+
+.input-erp {
+    padding: 10px 14px;
+    border: 1px solid var(--color-gray-200);
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-family: inherit;
+    background: #fbfbfc;
+    transition: all 0.2s;
+}
+
+.input-erp:focus {
+    border-color: var(--color-primary);
+    background: white;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 133, 7, 0.1);
+}
+
+/* SUELDO INPUT WITH INLINE CHECKBOX */
+.input-with-side {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-with-side .input-erp {
+    width: 100%;
+    padding-right: 100px;
+}
+
+.inline-action {
+    position: absolute;
+    right: 10px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-gray-500);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.inline-action:hover {
+    background: var(--color-gray-100);
+}
+
+.inline-action input {
+    cursor: pointer;
+}
+
+/* BUTTON CAREER SELECTOR */
+.career-selector-btn {
+    width: 100%;
+    padding: 10px 14px;
+    background: white;
+    border: 1px solid var(--color-gray-200);
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--color-gray-500);
+    font-weight: 600;
+}
+
+.career-selector-btn.selected {
+    color: var(--color-gray-800);
+    border-color: var(--color-primary);
+}
+
+.career-selector-btn:hover {
+    background: #fcfcfc;
+}
+
+/* TAGS DE CARRERAS SELECCIONADAS */
+.selected-careers-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.career-tag {
+    background: #fff8f0;
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    animation: popIn 0.2s ease;
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.85);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.career-tag i {
+    cursor: pointer;
+    opacity: 0.7;
+    font-size: 0.75rem;
+}
+
+.career-tag i:hover {
+    opacity: 1;
+}
+
+/* GRID DE SELECCIÓN DE CARRERAS (4 columnas) */
+.carreras-compact-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    width: 100%;
+}
+
+@media (max-width: 1100px) {
+    .carreras-compact-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 750px) {
+    .carreras-compact-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .split-right-panel,
+    .explorar-right {
+        display: none !important;
+    }
+
+    .split-left-panel,
+    .explorar-left {
+        width: 100%;
+    }
+    .erp-top-container {
+        padding: 10px 6px 0 6px;
+    }
+
+    .erp-header-main-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 14px;
+    }
+
+    .header-left-info,
+    .header-toolbar {
+        display: none;
+    }
+
+    .btn-toolbar-sm {
+        display: none;
+    }
+
+    .header-left-info h1 {
+        font-size: 1.1rem;
+        letter-spacing: 0;
+    }
+
+    .header-left-info p {
+        font-size: 0.78rem;
+    }
+
+    .header-toolbar {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+
+    .btn-toolbar-sm {
+        width: 100%;
+        justify-content: center;
+        border-radius: 12px;
+        padding: 8px 10px;
+        font-size: 0.75rem;
+    }
+
+    .header-kpi {
+        width: 100%;
+        padding-left: 0;
+        border-left: none;
+        border-top: 1px solid var(--color-gray-100);
+        padding-top: 10px;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+
+    .kpi-icon-sm {
+        width: 36px;
+        height: 36px;
+        font-size: 1rem;
+    }
+
+    .kpi-value-sm {
+        font-size: 1.1rem;
+    }
+
+    .kpi-label-sm {
+        font-size: 0.65rem;
+    }
+
+    .erp-form-wrapper {
+        padding: 8px 6px 20px 6px;
+    }
+
+    .erp-form-padding {
+        padding: 18px;
+    }
+
+    .grid-side-textarea,
+    .grid-3 {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .option-picker {
+        grid-template-columns: 1fr;
+    }
+
+    #modalidadPicker {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .picker-item {
+        padding: 12px;
+        border-radius: 12px;
+    }
+
+    .picker-icon {
+        width: 38px;
+        height: 38px;
+    }
+
+    .tall-textarea {
+        min-height: 120px;
+    }
+
+    .form-footer-pro {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .form-footer-pro .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+.career-item-v5 {
+    background: white;
+    border: 2px solid var(--color-gray-200);
+    border-radius: 12px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.career-item-v5:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(255, 133, 7, 0.12);
+}
+
+.career-item-v5.selected {
+    border-color: var(--color-primary);
+    background: #fff8f0;
+    box-shadow: 0 0 0 3px rgba(255, 133, 7, 0.15);
+}
+
+.career-img-v5 {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    background: #f1f5f9;
+    display: block;
+}
+
+.career-info-v5 {
+    padding: 10px 12px;
+    text-align: center;
+}
+
+.career-info-v5 h3 {
+    font-size: 0.75rem;
+    margin: 0;
+    font-weight: 800;
+    color: var(--color-gray-800);
+    text-transform: uppercase;
+    line-height: 1.3;
+}
+
+.check-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 24px;
+    height: 24px;
+    background: var(--color-primary);
+    color: white;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 5;
+}
+
+.career-item-v5.selected .check-badge {
+    display: flex;
+}
+
+/* CHIPS DE CARRERAS EN DETALLE DE VACANTE */
+.career-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+.chip {
+    background: white;
+    border: 1px solid var(--color-gray-200);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--color-gray-700);
+}
+
+/* CAROUSEL NAV */
+.carousel-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: white;
+    padding: 10px 25px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--color-gray-200);
+}
+
+.btn-nav-round {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: #fff8f0;
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-nav-round:hover:not(:disabled) {
+    background: var(--color-primary);
+    color: white;
+    transform: scale(1.1);
+}
+
+.btn-nav-round:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.carousel-counter {
+    font-weight: 800;
+    color: var(--color-gray-900);
+    font-size: 1rem;
+    min-width: 80px;
+    text-align: center;
+}
+
+/* ========================================
+   INNER VIEW (REEMPLAZA FORMULARIO EN EL FLUJO)
+   ======================================== */
+.erp-inner-view {
+    display: none;
+    flex-direction: column;
+    background: #f1f4f8;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 0 0 10px 0;
+    min-height: 70vh;
+    animation: fadeInScale 0.3s ease-out;
+}
+
+.erp-inner-view.active {
+    display: flex;
+}
+
+/* Cuando el inner view está activo, ocultar el formulario */
+.erp-inner-view.active~.erp-form-wrapper {
+    display: none;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.inner-view-header {
+    background: white;
+    padding: 12px 25px;
+    border-bottom: 1px solid var(--color-gray-200);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* BREADCRUMB */
+.inner-view-breadcrumb {
+    display: flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--color-gray-700);
+}
+
+.inner-view-breadcrumb span:first-child:hover {
+    color: var(--color-primary);
+}
+
+.inner-view-content {
+    flex: 1;
+    padding: 25px 30px;
+    display: flex;
+    justify-content: center;
+    /* Centrado horizontal */
+    align-items: flex-start;
+    /* Inicia arriba */
+    overflow-y: auto;
+}
+
+.inner-view-footer {
+    padding: 15px 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-shrink: 0;
+    background: transparent;
+}
+
+/* DETALLE VACANTE (REDISEÑO MÁS GRANDE + LOGO) */
+.vacancy-detail-pro {
+    margin: 30px auto !important;
+    max-width: 980px !important;
+    width: 95% !important;
+    background: white;
+    max-width: 1050px;
+    /* Más grande */
+    width: 100%;
+    margin-top: 10px;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--color-gray-200);
+    position: relative;
+    animation: slideUpCenter 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@keyframes slideUpCenter {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* LOGO DE EMPRESA FLOTANTE */
+.company-logo-overlay {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    width: 140px;
+    height: 140px;
+    background: white;
+    border-radius: 16px;
+    padding: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #fff;
+}
+
+.company-logo-overlay img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.vacancy-hero {
+    height: 380px;
+    /* Más grande para imagen impactante */
+    background: #1e293b;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    padding: 40px 50px;
+    overflow: hidden;
+}
+
+.vacancy-hero-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+}
+
+/* Botón para abrir imagen en grande */
+.btn-expand-hero {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    z-index: 20;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: all 0.2s;
+    font-size: 0.9rem;
+}
+
+.btn-expand-hero:hover {
+    background: var(--color-primary);
+    transform: scale(1.1);
+}
+
+.hero-overlay-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: white;
+    width: 100%;
+}
+
+.hero-tag {
+    background: var(--color-primary);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: inline-block;
+}
+
+.hero-content h1 {
+    font-size: 2rem;
+    margin: 0 0 4px;
+    font-weight: 800;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    line-height: 1.2;
+}
+
+.hero-company {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    font-weight: 600;
+    display: block;
+    letter-spacing: 0.3px;
+}
+
+.hero-location {
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    max-width: 600px; /* Evitar que sea demasiado largo */
+}
+
+.hero-location i {
+    text-shadow: none;
+}
+
+.vacancy-main-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    padding: 30px 40px;
+    gap: 30px;
+}
+
+.detail-section h4 {
+    font-size: 0.65rem;
+    color: var(--color-gray-500);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 8px;
+}
+
+.detail-p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--color-gray-700);
+    margin-bottom: 25px;
+    white-space: pre-wrap;
+}
+
+.sidebar-data {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.data-card {
+    background: #f8fafc;
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid var(--color-gray-100);
+    transition: all 0.2s;
+}
+
+.data-card:hover {
+    background: #fff8f0;
+    border-color: rgba(255, 133, 7, 0.2);
+}
+
+.data-card.sueldo {
+    background: #f0fff4;
+    border-color: #c6f6d5;
+}
+
+.data-card.sueldo span {
+    color: #276749;
+}
+
+.data-card.deadline {
+    background: #fff8f0;
+    border-color: #fbd38d;
+}
+
+.data-card.deadline span {
+    color: var(--color-primary);
+    font-weight: 900;
+}
+
+.data-card label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--color-gray-400);
+    margin-bottom: 4px;
+    text-transform: uppercase;
+}
+
+.data-card span {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--color-gray-900);
+}
+
+/* NAVEGACIÓN CARROUSEL */
+.carousel-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: white;
+    padding: 10px 25px;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--color-gray-200);
+}
+
+.btn-nav-round {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: none;
+    background: #fff8f0;
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-nav-round:hover:not(:disabled) {
+    background: var(--color-primary);
+    color: white;
+    transform: scale(1.1);
+}
+
+.btn-nav-round:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.carousel-counter {
+    font-weight: 800;
+    color: var(--color-gray-900);
+    font-size: 1rem;
+    min-width: 100px;
+    text-align: center;
+}
+
+/* GRID DE CARRERAS (SELECCIÓN) */
+.carreras-compact-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    width: 100%;
+    /* Asegura que tome todo el ancho del content centrado */
+}
+
+.career-item-v5 {
+    background: white;
+    border: 1px solid var(--color-gray-200);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.career-item-v5:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-3px);
+}
+
+.career-item-v5.selected {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(255, 133, 7, 0.15);
+}
+
+.career-img-v5 {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    background: #f1f5f9;
+}
+
+.career-info-v5 {
+    padding: 10px;
+    text-align: center;
+}
+
+.career-info-v5 h3 {
+    font-size: 0.75rem;
+    margin: 0;
+    font-weight: 800;
+    color: var(--color-gray-800);
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+.check-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 22px;
+    height: 22px;
+    background: var(--color-primary);
+    color: white;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 5;
+}
+
+.career-item-v5.selected .check-badge {
+    display: flex;
+}
+
+/* THUMBNAIL IMAGEN DE VACANTE (VISOR CLICABLE) */
+.vacancy-img-card {
+    cursor: pointer;
+    overflow: hidden;
+    padding: 0 !important;
+}
+
+.vacancy-img-card label {
+    padding: 12px 15px 6px !important;
+    cursor: pointer;
+}
+
+.vacancy-thumb-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.vacancy-thumb {
+    width: 100%;
+    max-height: 200px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.vacancy-img-card:hover .vacancy-thumb {
+    transform: scale(1.03);
+}
+
+.vacancy-thumb-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 700;
+    opacity: 0;
+    transition: opacity 0.25s;
+}
+
+.vacancy-img-card:hover .vacancy-thumb-overlay {
+    opacity: 1;
+}
+
+/* HELPERS */
+.full-width {
+    grid-column: span 3;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+@media (max-width: 1100px) {
+    .carreras-compact-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
+
+    .vacancy-main-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .carreras-compact-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ========================================
+   DASHBOARD ALUMNO DIVIDIDO (ERP STYLE)
+   ======================================== */
+.alumno-dashboard-grid {
+    display: grid;
+    grid-template-columns: 480px 1fr; /* Más ancho el panel de lista */
+    gap: 20px;
+    height: calc(100vh - 120px);
+    margin-top: 20px;
+}
+
+@media (max-width: 992px) {
+    .alumno-dashboard-grid {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+}
+
+/* PANEL IZQUIERDO: LISTA */
+.split-left-panel {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid var(--color-gray-200);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.panel-header {
+    padding: 20px;
+    border-bottom: 1px solid var(--color-gray-100);
+}
+
+.ph-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.ph-title h2 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--color-gray-900);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.badge-count {
+    background: rgba(255, 133, 7, 0.1);
+    color: var(--color-primary);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.search-box-pro {
+    position: relative;
+}
+
+.search-box-pro .align-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-gray-400);
+}
+
+.search-box-pro input {
+    width: 100%;
+    padding: 12px 14px 12px 38px;
+    background: #f8fafc;
+    border: 1px solid var(--color-gray-200);
+    border-radius: 10px;
+    font-size: 0.85rem;
+    color: var(--color-gray-800);
+    outline: none;
+    transition: all 0.2s;
+}
+
+.search-box-pro input:focus {
+    background: white;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(255, 133, 7, 0.1);
+}
+
+.vacantes-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 10px;
+    background: #f8fafc;
+}
+
+/* MINICARDS (Lista izquierda) */
+.student-vac-card {
+    background-color: white !important;
+    border: 1.5px solid #ff8507 !important;
+    border-radius: 16px !important;
+    padding: 16px 18px !important;
+    margin-bottom: 15px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06) !important;
+    transition: all 0.3s ease !important;
+    cursor: pointer !important;
+}
+
+.student-vac-card:hover {
+    transform: translateY(-5px) !important;
+}
+
+.trash_2 {
+    background: white;
+    border: 1px solid var(--color-gray-200);
+    border-radius: 12px;
+    padding: 14px; /* Menos padding vertical/horizontal */
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 6px; /* Menos espacio entre líneas */
+}
+
+.student-vac-card:hover {
+    transform: translateX(4px);
+    border-color: rgba(255, 133, 7, 0.4);
+    box-shadow: 0 4px 12px rgba(255, 133, 7, 0.08);
+}
+
+.student-vac-card.active {
+    border-color: var(--color-primary);
+    background: #fff8f0;
+    box-shadow: inset 4px 0 0 var(--color-primary), 0 4px 15px rgba(255, 133, 7, 0.1);
+}
+
+.badge-postulado-mini {\r\n    background: #dcfce7;\r\n    color: #15803d;\r\n    font-size: 0.65rem;\r\n    font-weight: 800;\r\n    width: 22px;\r\n    height: 22px;\r\n    padding: 0;\r\n    border-radius: 50%;\r\n    display: inline-flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    border: 1px solid #bbf7d0;\r\n    margin-right: 6px;\r\n}
+
+.mvc-empresa {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--color-gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Ciudad de la empresa debajo del nombre */
+.mvc-ciudad {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--color-gray-600);
+    margin-top: -2px;
+}
+
+.mvc-ciudad i {
+    font-size: 0.7rem;
+    flex-shrink: 0;
+}
+
+.mvc-puesto {
+    font-size: 1.05rem; /* Ya estaba así, lo mantengo pero cuidaré el line-height */
+    font-weight: 800;
+    color: var(--color-gray-900);
+    margin: 2px 0;
+    line-height: 1.1;
+}
+
+.mvc-meta {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 15px; /* Separación horizontal */
+    row-gap: 4px;     /* Separación vertical mínima */
+    font-size: 0.72rem; /* Texto más pequeño */
+    color: var(--color-gray-600);
+    margin-top: 2px;
+}
+
+.mvc-meta div {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.mvc-meta i {
+    color: var(--color-primary);
+}
+
+.pagination-footer {
+    padding: 14px 20px;
+    border-top: 1px solid var(--color-gray-100);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+}
+
+.btn-page {
+    background: #f1f5f9;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    color: var(--color-gray-700);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn-page:not(:disabled):hover {
+    background: var(--color-primary);
+    color: white;
+}
+
+.btn-page:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.page-indicator {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-gray-800);
+}
+
+/* PANEL DERECHO: DETALLE */
+.split-right-panel {
+    background: white;
+    border-radius: 16px;
+    border: 1px solid var(--color-gray-200);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    position: relative;
+}
+
+.empty-state-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 40px;
+    text-align: center;
+    color: var(--color-gray-500);
+}
+
+.empty-icon-wrap {
+    width: 80px;
+    height: 80px;
+    background: #f1f5f9;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    color: var(--color-gray-400);
+    margin-bottom: 20px;
+}
+
+.empty-state-detail h3 {
+    color: var(--color-gray-800);
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin: 0 0 10px;
+}
+
+.empty-state-detail p {
+    font-size: 0.95rem;
+    max-width: 350px;
+    line-height: 1.6;
+}
+
+/* Redes Sociales en Detalle */
+.social-pack {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--color-gray-200);
+}
+
+.social-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: transform 0.2s;
+}
+
+.social-btn:hover {
+    transform: translateY(-3px);
+}
+
+.sb-fb {
+    background: #1877F2;
+}
+
+.sb-ig {
+    background: #E4405F;
+}
+
+.sb-wa {
+    background: #25D366;
+}
+
+.sb-li {
+    background: #0A66C2;
+}
+
+.sb-web {
+    background: #334155;
+}
+
+.sb-mail {
+    background: #EA4335;
+}
+
+/* Enviar CV Flotante o Bottom */
+.postular-wrap {
+    margin-top: 25px;
+    padding: 20px;
+    background: #f0fdf4;
+    border: 1px dashed #4ade80;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.postular-wrap.already-sent {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+}
+
+.btn-postular {
+    background: #16a34a;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(22, 163, 74, 0.3);
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-postular:hover {
+    background: #15803d;
+    transform: scale(1.05);
+}
+
+.btn-postular:disabled {
+    background: #94a3b8;
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: none;
+}
+/* === VACANCY FULLSCREEN MODAL (MOBILE) === */
+.vacancy-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(6px);
+    display: none;
+    z-index: 5000;
+}
+
+.vacancy-modal.active { display: flex; }
+
+.vacancy-modal-content {
+    background: #ffffff;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.vacancy-modal-header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.vacancy-modal-close {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.vacancy-modal-body {
+    padding: 16px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+@media (min-width: 769px) {
+    .vacancy-modal { display: none !important; }
+}
+
