@@ -60,8 +60,11 @@
     <div id="changePasswordModal" class="modal-overlay">
         <div class="modal-container modal-green-accent">
             <div class="modal-header">
-                <h3><i class="fas fa-shield-alt"></i> </h3>
-            </div>
+                        <h3><i class="fas fa-shield-alt"></i> Cambiar contraseña</h3>
+                    </div>
+                    <div style="padding: 0 1.25rem 0 1.25rem; font-size:0.95rem; color:var(--color-gray-700);">
+                        <p id="changePasswordUserInfo" style="margin:0 0 1rem 0;">Debes actualizar tu contraseña por motivos de seguridad.</p>
+                    </div>
             <form id="changePasswordForm">
                 <div class="modal-body">
                     <p style="font-size: 0.95rem; color: var(--color-gray-600); margin-bottom: 2rem; line-height: 1.5;">
@@ -123,6 +126,7 @@
 
                     <div class="form-group">
                         <label for="resetEmail">Correo Electrónico</label>
+                   
                         <div class="password-input" style="position: relative;">
                             <input type="email" id="resetEmail" required placeholder="usuario@virtual.utsc.edu.mx" style="width:100%; padding:10px 12px; border:1px solid #d1d5db; border-radius:8px;">
                         </div>

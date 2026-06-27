@@ -2,6 +2,42 @@
 // COMPONENTES DE NAVEGACIÃ“N
 // ========================================
 
+// ────────────────────────────────────────
+// CLIMA MONTERREY  –  OpenWeatherMap API
+// ────────────────────────────────────────
+const OWM_API_KEY = '6d1b74de37cde7258b2fd6b1637c94df';
+const OWM_CITY    = 'Monterrey,MX';
+const OWM_URL     = `https://api.openweathermap.org/data/2.5/weather?q=${OWM_CITY}&appid=${OWM_API_KEY}&units=metric&lang=es`;
+
+/** Obtiene el clima de Monterrey y actualiza todos los .weather-widget en la página */
+async function fetchMonterreyWeather() {
+    try {
+        const res  = await fetch(OWM_URL);
+        if (!res.ok) throw new Error('OWM error ' + res.status);
+        const data = await res.json();
+
+        const temp     = Math.round(data.main.temp);
+        const desc     = data.weather[0].description;
+        const iconCode = data.weather[0].icon;
+        const iconUrl  = `https://openweathermap.org/img/wn/${iconCode}.png`;
+        const capDesc  = desc.charAt(0).toUpperCase() + desc.slice(1);
+
+        document.querySelectorAll('.weather-widget').forEach(w => {
+            w.innerHTML = `
+                <img src="${iconUrl}" alt="${desc}" class="weather-icon" title="${capDesc}">
+                <span class="weather-temp">${temp}°C</span>
+                <span class="weather-desc">${capDesc}</span>
+                <span class="weather-city"><i class="fas fa-map-marker-alt"></i> Monterrey</span>
+            `;
+        });
+    } catch (err) {
+        document.querySelectorAll('.weather-widget').forEach(w => {
+            w.innerHTML = `<i class="fas fa-cloud" style="opacity:.5;"></i><span style="opacity:.6;"> Sin datos</span>`;
+        });
+        console.warn('Weather fetch failed:', err);
+    }
+}
+
 /**
  * Crear navbar para alumno
  */
@@ -48,6 +84,11 @@ function createAlumnoNavbar() {
                     </a>
                 </li>
             </ul>
+
+            <!-- WIDGET CLIMA MONTERREY -->
+            <div class="weather-widget navbar-weather" title="Clima actual en Monterrey">
+                <i class="fas fa-spinner fa-spin" style="opacity:.5; color:#fff;"></i>
+            </div>
 
             <!-- PERFIL USUARIO -->
             <div class="navbar-item dropdown">
@@ -107,10 +148,14 @@ function createAlumnoNavbar() {
         }
     });
 
-    // 2. Inicializar dropdowns general (esto clonarÃ¡ el botÃ³n para limpiar basura)
+    // 2. Inicializar dropdowns general (esto clonará el botón para limpiar basura)
     initDropdowns();
 
-    // â”€â”€ AUTO-HIDE AL SCROLL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+    // Cargar clima Monterrey en navbar alumno
+    fetchMonterreyWeather();
+    setInterval(fetchMonterreyWeather, 10 * 60 * 1000); // actualizar cada 10 min
+
+    // ── AUTO-HIDE AL SCROLL ──────────────────────────────────────────
     // Cuando el usuario baja, la navbar se oculta y aparece un botÃ³n flotante
     // para volver a mostrarla. Cuando sube, reaparece automÃ¡ticamente.
     let lastScrollY = window.scrollY;
@@ -204,7 +249,7 @@ function createSidebar(role) {
         <div class="sidebar-footer">
             <button class="btn-logout" onclick="showLogoutModal()">
                 <i class="fas fa-sign-out-alt"></i>
-                Cerrar SesiÃ³n
+                Cerrar Sesion
             </button>
         </div>
     `;
@@ -248,6 +293,10 @@ function createSidebar(role) {
             <span class="erp-user-name">${session.nombre}</span>
         </div>
         <div class="erp-datetime" id="erpDateTime">
+            <div class="weather-widget erp-weather" title="Clima actual en Monterrey">
+                <i class="fas fa-spinner fa-spin" style="opacity:.5;"></i>
+            </div>
+            <span class="erp-datetime-sep">|</span>
             <i class="far fa-calendar-alt"></i>
             <span id="erpDateText">Cargando...</span>
             <i class="far fa-clock" style="margin-left: 10px;"></i>
@@ -298,6 +347,10 @@ function createSidebar(role) {
 
     updateERPTime();
     setInterval(updateERPTime, 1000);
+
+    // Cargar clima Monterrey en topbar ERP
+    fetchMonterreyWeather();
+    setInterval(fetchMonterreyWeather, 10 * 60 * 1000); // actualizar cada 10 min
 
     // Agregar clase al body para ajustar el contenido
     document.body.classList.add('has-sidebar');

@@ -9,24 +9,20 @@ requireAuth(['alumno']);
             const authorEl = document.getElementById('quoteAuthor');
             const progressEl = document.getElementById('quoteProgress');
             
-            // Ocultar textos temporalmente mientras carga
             textEl.style.opacity = 0.3;
             authorEl.style.opacity = 0.3;
             
-            // Reiniciar animación de la barra
             progressEl.style.transition = 'none';
             progressEl.style.width = '0%';
             
             try {
                 // 1. Obtención de Frase mediante la API Oficial de ZenQuotes
-                // (Usamos corsproxy.io porque AllOrigins presenta bloqueos CORS estrictos. Este proxy devuelve la respuesta directa)
                 const zenUrl = 'https://zenquotes.io/api/random?t=' + Date.now();
                 const proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent(zenUrl);
                 
                 const zenRes = await fetch(proxyUrl);
                 const zenData = await zenRes.json();
                 
-                // Extraer el de array JSON directamente
                 const quoteObj = zenData[0];
                 
                 const englishQuote = quoteObj.q;
@@ -39,11 +35,9 @@ requireAuth(['alumno']);
                 
                 let spanishQuote = englishQuote; // Fallback al inglés si la traducción no responde
                 if(transData && transData.responseData && transData.responseData.translatedText) {
-                    // Ciertas APIs retornan comillas codificadas como &#39;, corregimos
                     spanishQuote = transData.responseData.translatedText.replace(/&#39;/g, "'").replace(/&quot;/g, '"');
                 }
 
-                // 3. Renderizado animado
                 textEl.style.opacity = 0;
                 authorEl.style.opacity = 0;
                 

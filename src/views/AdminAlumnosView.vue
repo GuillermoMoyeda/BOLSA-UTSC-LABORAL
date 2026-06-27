@@ -228,6 +228,21 @@
                 </div>
                 <p style="margin-top: var(--spacing-lg); color: var(--color-gray-600); font-size: 0.9rem;">Se enviará un
                     correo electrónico con las credenciales de acceso al alumno.</p>
+
+                <div style="margin-top:1rem; font-size:0.85rem; color:var(--color-gray-700); background:#fff; padding:12px; border-radius:8px; border:1px solid #e5e7eb;">
+                    <strong>Protección de Datos Personales (resumen):</strong>
+                    <p style="margin:6px 0 0 0;">La Universidad Tecnológica de Santa Catarina (UTSC) es responsable del
+                    tratamiento de los datos personales contenidos en este mensaje. Los datos que recibimos se
+                    emplean únicamente para gestionar el acceso al sistema de Bolsa de Trabajo y facilitar la
+                    interacción entre alumnos y empleadores. La contraseña enviada es temporal y deberá ser
+                    cambiada por el alumno en su primer inicio de sesión.</p>
+                    <p style="margin:6px 0 0 0;">La información es confidencial y su uso por personas distintas al
+                    destinatario está prohibido. Para ejercer derechos ARCO o solicitar el aviso de privacidad
+                    integral, escribe a soporte@virtual.utsc.edu.mx.</p>
+                </div>
+
+                <!-- Texto de privacidad completo (se incluye en el correo). Oculto visualmente pero accesible desde JS -->
+                <textarea id="privacyText" style="display:none;">PROTECCIÓN DE DATOS PERSONALES.- Universidad Tecnológica de Santa Catarina (UTSC). Domicilio: campus UTSC. Los datos personales contenidos en este correo son tratados por UTSC como responsable, y serán utilizados únicamente para gestionar el acceso al sistema de Bolsa de Trabajo y comunicaciones relacionadas con la misma. La información se considera confidencial y su uso por terceros está prohibido. La contraseña proporcionada es temporal y el alumno deberá cambiarla en su primer inicio de sesión. Para mayor información y para ejercer los derechos ARCO, consulta el Aviso de Privacidad Integral disponible en la página institucional o contacta a soporte@virtual.utsc.edu.mx.</textarea>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" onclick="closeCredentialsModal()">Cancelar</button>
@@ -238,7 +253,6 @@
         </div>
     </div>
 
-    <!-- Modal Opción Excel -->
     <div id="excelModal" class="modal-overlay">
         <div class="modal-container" style="max-width: 450px; text-align: center;">
             <div class="modal-body">

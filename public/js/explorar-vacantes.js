@@ -1,5 +1,5 @@
 // ==========================================
-//  EXPLORAR VACANTES — LÓGICA V2
+//  EXPLORAR VACANTES ï¿½ Lï¿½GICA V2
 // ==========================================
 function isMobileExp() { return window.matchMedia('(max-width: 768px)').matches; }
 function openExpVacancyModal() { const m = document.getElementById('expVacancyModal'); if (m) m.classList.add('active'); }
@@ -225,11 +225,20 @@ function renderList() {
         const carrerasStr = v.carreras && v.carreras.length > 0
             ? v.carreras[0].nombre + (v.carreras.length > 1 ? ` +${v.carreras.length - 1}` : '')
             : 'General';
+        const safeVacancyId = String(v.id || '').replace(/'/g, "\\'");
+        const safeNombreEmpresa = escapeHtml((v.nombreEmpresa || 'Empresa').toUpperCase());
+        const safeCiudadEmpresa = v.ciudadEmpresa ? escapeHtml(v.ciudadEmpresa) : '';
+        const safePuesto = escapeHtml(v.puesto || '');
+        const safeModalidad = escapeHtml((v.modalidad || '').toUpperCase());
+        const safeTipoCandidato = escapeHtml((v.tipoCandidato || '').toUpperCase());
+        const safeCarrerasStr = escapeHtml(carrerasStr);
+        const safeHorario = escapeHtml(v.horario || 'No especificado');
+
         const badgePost = v.isPostulado
             ? `<span class="exp-badge-postulado" title="Postulado"><i class="fas fa-check"></i></span>`
             : '';
-        const ciudadHtml = v.ciudadEmpresa
-            ? `<div class="exp-card-ciudad"><i class="fas fa-map-marker-alt"></i>${v.ciudadEmpresa}</div>`
+        const ciudadHtml = safeCiudadEmpresa
+            ? `<div class="exp-card-ciudad"><i class="fas fa-map-marker-alt"></i>${safeCiudadEmpresa}</div>`
             : '';
 
         const keyGuardados = `guardados_${session.correo || session.email}`;
@@ -237,18 +246,18 @@ function renderList() {
         const isSaved = savedData.some(savedV => savedV.id === v.id);
 
         return `
-            <div class="exp-vac-card student-vac-card ${currentSelectedId === v.id ? 'active' : ''}" onclick="selectVacancy('${v.id}')">
+            <div class="exp-vac-card student-vac-card ${currentSelectedId === v.id ? 'active' : ''}" onclick="selectVacancy('${safeVacancyId}')">
                 <div class="exp-card-top">
                     <div style="flex:1;">
                         <div class="exp-card-empresa">
                             <i class="fas fa-building" style="font-size:0.58rem;"></i>
-                            ${(v.nombreEmpresa || 'Empresa').toUpperCase()}
+                            ${safeNombreEmpresa}
                         </div>
                         ${ciudadHtml}
                     </div>
                     <div style="display: flex; align-items: center; gap: 8px;">
                         ${badgePost}
-                        <button class="btn-save-mini" onclick="event.stopPropagation(); toggleGuardarVacante('${v.id}')" 
+                        <button class="btn-save-mini" onclick="event.stopPropagation(); toggleGuardarVacante('${safeVacancyId}')" 
                                 style="background:${isSaved ? '#fffbeb' : 'transparent'}; 
                                        color:${isSaved ? '#d97706' : '#cbd5e1'}; 
                                        border: 1px solid ${isSaved ? '#fcd34d' : 'transparent'};
@@ -258,12 +267,12 @@ function renderList() {
                         </button>
                     </div>
                 </div>
-                <h3 class="exp-card-puesto">${v.puesto}</h3>
+                <h3 class="exp-card-puesto">${safePuesto}</h3>
                 <div class="exp-card-meta">
-                    <div><i class="fas fa-layer-group"></i>${(v.modalidad || '').toUpperCase()}</div>
-                    <div><i class="fas fa-user-graduate"></i>${(v.tipoCandidato || '').toUpperCase()}</div>
-                    <div style="flex:1 0 100%;"><i class="fas fa-briefcase"></i>${carrerasStr}</div>
-                    <div style="flex:1 0 100%; margin-top:-2px;"><i class="fas fa-clock"></i>${v.horario || 'No especificado'}</div>
+                    <div><i class="fas fa-layer-group"></i>${safeModalidad}</div>
+                    <div><i class="fas fa-user-graduate"></i>${safeTipoCandidato}</div>
+                    <div style="flex:1 0 100%;"><i class="fas fa-briefcase"></i>${safeCarrerasStr}</div>
+                    <div style="flex:1 0 100%; margin-top:-2px;"><i class="fas fa-clock"></i>${safeHorario}</div>
                 </div>
             </div>
         `;

@@ -126,6 +126,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (result && result.changePasswordRequired) {
                     // Guardar datos temporales para el cambio de password
                     window.pendingUser = result;
+                    // mostrar información en el modal
+                    const infoEl = document.getElementById('changePasswordUserInfo');
+                    if (infoEl) {
+                        const displayName = result.nombre ? `${result.nombre} ${result.apellidos || ''}`.trim() : (result.correo || result.email || '');
+                        infoEl.textContent = `Hola ${displayName || ''}, por seguridad debes actualizar tu contraseña antes de continuar.`;
+                    }
                     document.getElementById('changePasswordModal').classList.add('active');
                     submitButton.disabled = false;
                     submitButton.innerHTML = '<i class="fas fa-sign-in-alt"></i> Iniciar Sesión';
@@ -161,9 +167,9 @@ window.togglePassword = function () {
     }
 };
 
-const EMAILJS_USER_ID = 'YOUR_EMAILJS_PUBLIC_KEY';
-const EMAILJS_SERVICE_ID = 'YOUR_EMAILJS_SERVICE_ID';
-const EMAILJS_TEMPLATE_ID = 'YOUR_EMAILJS_TEMPLATE_ID';
+const EMAILJS_USER_ID = '7MIV2DrVVl-ZpxHYr';
+const EMAILJS_SERVICE_ID = 'service_uvevofc';
+const EMAILJS_TEMPLATE_ID = 'template_q2wt9i8';
 
 async function getUserDocByEmail(email) {
     const normalizedEmail = email.trim().toLowerCase();

@@ -87,6 +87,9 @@ requireAuth(['admin']);
                             ${lastLogin ? getTimeAgo(lastLogin) : 'Sin conexión'}
                         </td>
                         <td data-label="Acciones" class="actions-cell">
+                            <button class="btn-table btn-reset" onclick="resetAlumnoPassword('${a.id}')" title="Restablecer contraseña">
+                                <i class="fas fa-key"></i>
+                            </button>
                             <button class="btn-table btn-send" onclick="openCredentialsModal('${a.id}')" title="Enviar credenciales">
                                 <i class="fas fa-envelope"></i>
                             </button>
@@ -338,19 +341,53 @@ requireAuth(['admin']);
                 const correo = document.getElementById('credAlumnoEmail').textContent;
                 const nombre = document.getElementById('credAlumnoNombre').textContent;
                 const password = document.getElementById('credAlumnoPassword').textContent;
-                const subject = encodeURIComponent('Credenciales UTSC Laboral');
-                const body = encodeURIComponent(
-                    `Hola ${nombre},\n\n` +
-                    `Tu usuario es: ${correo}\n` +
+                const subject = encodeURIComponent('Credenciales UTSC - Bolsa de Trabajo');
+
+                // Incluir aviso de privacidad si existe
+                const privacyEl = document.getElementById('privacyText');
+                const privacyText = privacyEl ? privacyEl.value.trim() : '';
+
+                const bodyPlain = `Hola ${nombre},\n\n` +
+                    `Te compartimos tus credenciales de acceso al sistema de Bolsa de Trabajo UTSC:\n\n` +
+                    `Usuario: ${correo}\n` +
                     `Contraseña temporal: ${password}\n\n` +
-                    `Por favor cambia la contraseña en tu primer inicio de sesión.\n\nSaludos.`
-                );
+                    `Por seguridad, cambia tu contraseña en tu primer inicio de sesión.\n\n` +
+                    `Saludos,\nEquipo de Bolsa de Trabajo UTSC\n\n` +
+                    (privacyText ? (`${privacyText}\n`) : ``);
+
+                const body = encodeURIComponent(bodyPlain);
                 window.location.href = `mailto:${correo}?subject=${subject}&body=${body}`;
                 showToast('Se abrió el cliente de correo para enviar credenciales', 'success');
                 closeCredentialsModal();
             } catch (error) {
                 console.error('Error:', error);
                 showToast('Error al enviar credenciales', 'error');
+            }
+        };
+
+        // Restablecer contraseña a la por defecto (hash + actualizar Firestore)
+        window.resetAlumnoPassword = async (id) => {
+            try {
+                if (!confirm('¿Confirmas restablecer la contraseña al valor por defecto para este alumno?')) return;
+
+                const defaultPass = 'utsc2026*';
+                const hashed = await hashPassword(defaultPass);
+
+                await db.collection('alumnos').doc(id).update({
+                    password: hashed,
+                    primerLogin: true,
+                    passwordCambiada: false,
+                    fechaUltimoReset: new Date().toISOString()
+                });
+
+                // Recargar datos y mostrar modal para enviar correo si el admin desea
+                await loadAlumnos();
+                // Abrir modal de credenciales para el alumno y mostrar la contraseña temporal
+                openCredentialsModal(id);
+                showToast('Contraseña restablecida a la por defecto (cifrada en base de datos).', 'success');
+            } catch (err) {
+                console.error('Error al restablecer contraseña:', err);
+                showToast('Error al restablecer la contraseña', 'error');
             }
         };
 

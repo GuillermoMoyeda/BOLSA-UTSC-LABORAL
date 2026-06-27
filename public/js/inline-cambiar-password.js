@@ -12,7 +12,21 @@ requireAuth(); // Permite cualquier rol autenticado (alumno, admin, reclutador)
             const mainAvatar = document.getElementById('profileAvatarMain');
             const initial = document.getElementById('avatarInitial');
             if (session.fotoUrl) {
-                mainAvatar.innerHTML = `<img src="${session.fotoUrl}" alt="Profile" style="width:100%; height:100%; object-fit:cover;">`;
+                mainAvatar.textContent = '';
+                initial.textContent = '';
+                const avatarImg = document.createElement('img');
+                try {
+                    avatarImg.src = new URL(session.fotoUrl, window.location.href).href;
+                } catch (error) {
+                    avatarImg.src = '';
+                }
+                avatarImg.alt = 'Profile';
+                avatarImg.style.cssText = 'width:100%; height:100%; object-fit:cover;';
+                avatarImg.addEventListener('error', () => {
+                    mainAvatar.textContent = '';
+                    initial.textContent = (session.nombre || 'U').charAt(0).toUpperCase();
+                });
+                mainAvatar.appendChild(avatarImg);
             } else {
                 initial.textContent = (session.nombre || 'U').charAt(0).toUpperCase();
             }
@@ -178,7 +192,12 @@ requireAuth(); // Permite cualquier rol autenticado (alumno, admin, reclutador)
             const cont = document.getElementById('toast-container');
             const t = document.createElement('div');
             t.style.cssText = `background:${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#2563eb'}; color:white; padding:12px 20px; border-radius:12px; margin-top:10px; font-weight:700; box-shadow:0 10px 25px rgba(0,0,0,0.1); display:flex; gap:10px; align-items:center;`;
-            t.innerHTML = `<i class="fas ${type === 'success' ? 'fa-check' : 'fa-info-circle'}"></i> <span>${msg}</span>`;
+            const icon = document.createElement('i');
+            icon.className = `fas ${type === 'success' ? 'fa-check' : 'fa-info-circle'}`;
+            const text = document.createElement('span');
+            text.textContent = msg;
+            t.appendChild(icon);
+            t.appendChild(text);
             cont.appendChild(t);
             setTimeout(() => t.remove(), 4000);
         }

@@ -130,10 +130,19 @@ function renderList() {
             el.onclick = () => selectVacancy(v.id);
 
             const carrerasStr = v.carreras && v.carreras.length > 0 ? v.carreras[0].nombre + (v.carreras.length > 1 ? ' +' : '') : 'General';
+            const safeEmpresaId = String(v.empresaId || '').replace(/'/g, "\\'");
+            const safeVacancyId = String(v.id || '').replace(/'/g, "\\'");
+            const safeNombreEmpresa = escapeHtml((v.nombreEmpresa || 'Empresa').toUpperCase());
+            const safeCiudadEmpresa = v.ciudadEmpresa ? escapeHtml(v.ciudadEmpresa) : '';
+            const safePuesto = escapeHtml(v.puesto || 'Vacante');
+            const safeModalidad = escapeHtml((v.modalidad || '').toUpperCase());
+            const safeTipoCandidato = escapeHtml((v.tipoCandidato || '').toUpperCase());
+            const safeCarrerasStr = escapeHtml(carrerasStr);
+            const safeHorario = escapeHtml(v.horario || 'No especificado');
             const badgePostulado = v.isPostulado ? `<div class="badge-postulado-mini" title="Postulado"><i class="fas fa-check"></i></div>` : '';
 
-            const ciudadLine = v.ciudadEmpresa
-                ? `<div class="mvc-ciudad"><i class="fas fa-map-marker-alt" style="color:#ff8507;"></i> ${v.ciudadEmpresa}</div>`
+            const ciudadLine = safeCiudadEmpresa
+                ? `<div class="mvc-ciudad"><i class="fas fa-map-marker-alt" style="color:#ff8507;"></i> ${safeCiudadEmpresa}</div>`
                 : '';
 
             // Verificar si estÃ¡ guardada en localStorage
@@ -144,14 +153,14 @@ function renderList() {
             el.innerHTML = `
                 <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: -2px;">
                     <div style="flex: 1;">
-                        <div class="mvc-empresa" onclick="event.stopPropagation(); showCompanyModal('${v.empresaId}')" style="cursor:pointer; display:inline-block;" onmouseover="this.style.textDecoration='underline'; this.style.color='#ff8507';" onmouseout="this.style.textDecoration='none'; this.style.color='';">
-                            <i class="fas fa-building" style="margin-right:2px; font-size: 0.65rem;"></i> ${(v.nombreEmpresa || 'Empresa').toUpperCase()}
+                        <div class="mvc-empresa" onclick="event.stopPropagation(); showCompanyModal('${safeEmpresaId}')" style="cursor:pointer; display:inline-block;" onmouseover="this.style.textDecoration='underline'; this.style.color='#ff8507';" onmouseout="this.style.textDecoration='none'; this.style.color='';">
+                            <i class="fas fa-building" style="margin-right:2px; font-size: 0.65rem;"></i> ${safeNombreEmpresa}
                         </div>
                         ${ciudadLine}
                     </div>
                     <div style="display: flex; align-items: center; gap: 8px;">
                         ${badgePostulado}
-                        <button class="btn-save-card" onclick="event.stopPropagation(); toggleGuardarVacanteCard('${v.id}')" 
+                        <button class="btn-save-card" onclick="event.stopPropagation(); toggleGuardarVacanteCard('${safeVacancyId}')" 
                                 style="background: ${isSaved ? '#fffbeb' : 'transparent'}; 
                                        color: ${isSaved ? '#d97706' : '#94a3b8'}; 
                                        border: 1px solid ${isSaved ? '#fcd34d' : 'transparent'};
@@ -162,13 +171,13 @@ function renderList() {
                     </div>
                 </div>
                 
-                <h3 class="mvc-puesto">${v.puesto}</h3>
+                <h3 class="mvc-puesto">${safePuesto}</h3>
                 
                 <div class="mvc-meta" style="gap: 10px 18px; line-height: 1;">
-                    <div style="font-size: 0.75rem;"><i class="fas fa-layer-group"></i> ${(v.modalidad || '').toUpperCase()}</div>
-                    <div style="font-size: 0.75rem;"><i class="fas fa-user-graduate"></i> ${(v.tipoCandidato || '').toUpperCase()}</div>
-                    <div style="font-size: 0.75rem; flex: 1 0 100%; margin-top: 1px;"><i class="fas fa-briefcase"></i> ${carrerasStr}</div>
-                    <div style="font-size: 0.75rem; flex: 1 0 100%; margin-top: -3px;"><i class="fas fa-clock"></i> ${v.horario || 'No especificado'}</div>
+                    <div style="font-size: 0.75rem;"><i class="fas fa-layer-group"></i> ${safeModalidad}</div>
+                    <div style="font-size: 0.75rem;"><i class="fas fa-user-graduate"></i> ${safeTipoCandidato}</div>
+                    <div style="font-size: 0.75rem; flex: 1 0 100%; margin-top: 1px;"><i class="fas fa-briefcase"></i> ${safeCarrerasStr}</div>
+                    <div style="font-size: 0.75rem; flex: 1 0 100%; margin-top: -3px;"><i class="fas fa-clock"></i> ${safeHorario}</div>
                 </div>
             `;
             listContainer.appendChild(el);

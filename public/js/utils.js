@@ -14,6 +14,33 @@ async function hashPassword(password) {
     return hashHex;
 }
 
+function escapeHtml(value) {
+    return String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
+        .replace(/\//g, '&#x2F;');
+}
+
+function sanitizeUrl(url) {
+    try {
+        const normalized = new URL(String(url), window.location.href);
+        const allowed = ['http:', 'https:', 'mailto:', 'tel:'];
+        return allowed.includes(normalized.protocol) ? normalized.href : '';
+    } catch (error) {
+        return '';
+    }
+}
+
+function generateSessionToken() {
+    if (window.crypto && window.crypto.randomUUID) {
+        return crypto.randomUUID();
+    }
+    return `sess-${Math.random().toString(36).slice(2)}-${Date.now()}`;
+}
+
 /**
  * Mostrar mensaje de error
  */
@@ -67,7 +94,10 @@ function togglePassword() {
  * Guardar sesión en localStorage
  */
 function saveSession(userData) {
-    localStorage.setItem('currentUser', JSON.stringify(userData));
+    const safeData = { ...userData };
+    delete safeData.password;
+    safeData.sessionId = safeData.sessionId || generateSessionToken();
+    localStorage.setItem('currentUser', JSON.stringify(safeData));
     localStorage.setItem('sessionTimestamp', Date.now().toString());
 }
 
@@ -83,7 +113,7 @@ function getCurrentSession() {
     }
 
     // Verificar si la sesión ha expirado (24 horas)
-    const sessionAge = Date.now() - parseInt(timestamp);
+    const sessionAge = Date.now() - parseInt(timestamp, 10);
     const maxAge = 24 * 60 * 60 * 1000; // 24 horas
 
     if (sessionAge > maxAge) {
@@ -91,7 +121,12 @@ function getCurrentSession() {
         return null;
     }
 
-    return JSON.parse(userDataStr);
+    try {
+        return JSON.parse(userDataStr);
+    } catch (error) {
+        clearSession();
+        return null;
+    }
 }
 
 /**
@@ -193,11 +228,19 @@ function showToast(message, type = 'success') {
 
     const icon = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
 
-    toast.innerHTML = `
-        <i class="fas ${icon}"></i>
-        <div class="toast-content">${message}</div>
-        <div class="toast-progress"></div>
-    `;
+    const iconEl = document.createElement('i');
+    iconEl.className = `fas ${icon}`;
+
+    const content = document.createElement('div');
+    content.className = 'toast-content';
+    content.textContent = String(message);
+
+    const progress = document.createElement('div');
+    progress.className = 'toast-progress';
+
+    toast.appendChild(iconEl);
+    toast.appendChild(content);
+    toast.appendChild(progress);
 
     container.appendChild(toast);
 
