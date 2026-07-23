@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "start": "vite preview --host 0.0.0.0 --port $PORT"
+    "start": "node ./scripts/start.mjs"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.5",
@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "firebase": "^12.11.0",
+    "vue": "^3.5.34",
     "vue-router": "^5.0.4"
   }
 }
